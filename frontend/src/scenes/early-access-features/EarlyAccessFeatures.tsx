@@ -48,7 +48,7 @@ export function EarlyAccessFeatures(): JSX.Element {
                             Allow your users to enable or disable beta features. Check out our{' '}
                             <Link
                                 data-attr="early-access-management-help"
-                                to="https://posthog.com/docs/feature-flags/beta-creator?utm_medium=in-product&utm_campaign=learn-more"
+                                to="https://posthog.com/docs/feature-flags/early-access-feature-management?utm_medium=in-product&utm_campaign=learn-more"
                                 target="_blank"
                             >
                                 {' '}
@@ -72,7 +72,7 @@ export function EarlyAccessFeatures(): JSX.Element {
                     thingName="feature"
                     description="Allow your users to individually enable or disable beta features."
                     isEmpty={shouldShowEmptyState}
-                    docsURL="https://posthog.com/docs/feature-flags/beta-creator"
+                    docsURL="https://posthog.com/docs/feature-flags/early-access-feature-management"
                     action={() => router.actions.push(urls.earlyAccessFeature('new'))}
                 />
             )}
