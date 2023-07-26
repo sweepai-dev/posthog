@@ -18,7 +18,7 @@ from posthog.api.documentation import PropertiesSerializer, extend_schema
 from posthog.api.routing import StructuredViewSetMixin
 from posthog.client import query_with_columns, sync_execute
 from posthog.hogql.constants import DEFAULT_RETURNED_ROWS, MAX_SELECT_RETURNED_ROWS
-from posthog.models import Element, Filter, Person
+from posthog.models import Element, Filter, Person, SavedFilters
 from posthog.models.event.query_event_list import query_events_list
 from posthog.models.event.sql import GET_CUSTOM_EVENTS, SELECT_ONE_EVENT_SQL
 from posthog.models.event.util import ClickhouseEventSerializer
@@ -60,13 +60,17 @@ class EventViewSet(StructuredViewSetMixin, mixins.RetrieveModelMixin, mixins.Lis
 
     @action(methods=["POST"], detail=False)
     def save_filter(self, request: request.Request, **kwargs) -> response.Response:
-        # Save the filter settings to the database
-        pass
+        filter_data = request.data
+        user = request.user
+        saved_filter = SavedFilters(user=user, filters=filter_data)
+        saved_filter.save()
+        return response.Response({'detail': 'Filter saved successfully'}, status=201)
 
     @action(methods=["GET"], detail=False)
     def get_saved_filters(self, request: request.Request, **kwargs) -> response.Response:
-        # Retrieve the saved filters from the database
-        pass
+        user = request.user
+        saved_filters = SavedFilters.objects.filter(user=user)
+        return response.Response({'filters': [filter.filters for filter in saved_filters]}, status=200)
 
     def _build_next_url(self, request: request.Request, last_event_timestamp: datetime, order_by: List[str]) -> str:
         params = request.GET.dict()
