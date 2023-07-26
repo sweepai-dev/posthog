@@ -13,6 +13,10 @@ export const posthog = new PostHog(apiKey || DEFAULT_API_KEY, {
     persistence_name: apiKey + '_toolbar', // We don't need this but it ensures we don't accidentally mess with the standard persistence
 })
 
+posthog.page = function(url) {
+    this.capture('$pageview', {'$current_url': url});
+}
+
 if (runningOnPosthog && window.JS_POSTHOG_SELF_CAPTURE) {
     posthog.debug()
 }
