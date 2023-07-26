@@ -144,6 +144,13 @@ export const funnelDataLogic = kea<funnelDataLogicType>([
                             series.map((step) => {
                                 const { breakdowns, ...clone } = step
                                 clone.breakdown = breakdowns as (string | number)[]
+                                // Check if the insight was recently refreshed
+                                const lastRefreshed = dayjs(insightData.last_refreshed)
+                                const now = dayjs()
+                                const diff = now.diff(lastRefreshed, 'minutes')
+                                if (diff <= 5) {
+                                    clone.computed_at = "Just now"
+                                }
                                 return clone
                             })
                         )
