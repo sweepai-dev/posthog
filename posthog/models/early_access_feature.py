@@ -2,7 +2,7 @@ from django.db import models
 from posthog.models.utils import UUIDModel, sane_repr
 
 
-class EarlyAccessFeature(UUIDModel):
+class BetaCreator(UUIDModel):
     class Stage(models.TextChoices):
         DRAFT = "draft", "draft"
         CONCEPT = "concept", "concept"
@@ -12,15 +12,15 @@ class EarlyAccessFeature(UUIDModel):
         ARCHIVED = "archived", "archived"
 
     team: models.ForeignKey = models.ForeignKey(
-        "posthog.Team", on_delete=models.CASCADE, related_name="features", related_query_name="feature"
+        "posthog.Team", on_delete=models.CASCADE, related_name="betas", related_query_name="beta"
     )
     feature_flag: models.ForeignKey = models.ForeignKey(
         "posthog.FeatureFlag",
         null=True,
         blank=True,
         on_delete=models.PROTECT,
-        related_name="features",
-        related_query_name="feature",
+        related_name="betas",
+        related_query_name="beta",
     )
     name: models.CharField = models.CharField(max_length=200)
     description: models.TextField = models.TextField(blank=True)
