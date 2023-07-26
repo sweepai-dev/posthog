@@ -42,7 +42,7 @@ export function ProfilePicture({
         // Check if Gravatar exists
         if (email) {
             const emailHash = md5(email.trim().toLowerCase())
-            const tentativeUrl = `https://www.gravatar.com/avatar/${emailHash}?s=96&d=404`
+            const tentativeUrl = `https://www.gravatar.com/avatar/${emailHash}?s=96&d=mp`
             // The image will be cached, so it's better to do a full GET request in this check
             fetch(tentativeUrl).then((response) => {
                 if (response.status === 200) {
