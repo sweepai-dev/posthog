@@ -152,6 +152,22 @@ class TestActionFormat(ClickhouseTestMixin, BaseTest):
         result = sync_execute(full_query, {**params, "team_id": self.team.pk}, team_id=self.team.pk)
         self.assertEqual(len(result), 2)
 
+    def test_page_function(self):
+        _create_event(
+            event="$pageview",
+            team=self.team,
+            distinct_id="whatever",
+            properties={"$current_url": "https://posthog.com/feedback/123"},
+        )
+
+        action1 = Action.objects.create(team=self.team, name="action1")
+        step1 = ActionStep.objects.create(event="$pageview", action=action1, url="https://posthog.com/feedback/123")
+        query, params = filter_event(step1)
+
+        full_query = EVENT_UUID_QUERY.format(" AND ".join(query))
+        result = sync_execute(full_query, {**params, "team_id": self.team.pk}, team_id=self.team.pk)
+        self.assertEqual(len(result), 1)
+
     def test_filter_event_regex_url(self):
 
         _create_event(
