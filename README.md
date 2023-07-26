@@ -75,6 +75,22 @@ PostHog brings all the tools and data you need to build better products.
 
 - **Import and export your data:** Import from and export to the services that matter to you with [the PostHog CDP](https://posthog.com/docs/cdp)
 - **Ready-made libraries:** We’ve built libraries for [JavaScript](https://posthog.com/docs/integrations/js-integration), [Python](https://posthog.com/docs/integrations/python-integration), [Ruby](https://posthog.com/docs/integrations/ruby-integration), [Node](https://posthog.com/docs/integrations/node-integration), [Go](https://posthog.com/docs/integrations/go-integration), [Android](https://posthog.com/docs/integrations/android-integration), [iOS](https://posthog.com/docs/integrations/ios-integration), [PHP](https://posthog.com/docs/integrations/php-integration), [Flutter](https://posthog.com/docs/integrations/flutter-integration), [React Native](https://posthog.com/docs/integrations/react-native-integration), [Elixir](https://posthog.com/docs/integrations/elixir-integration), [Nim](https://github.com/Yardanico/posthog-nim), and an [API](https://posthog.com/docs/integrations/api) for anything else
+
+  Here are examples of how to use the `page` function in each library:
+
+  - JavaScript: `posthog.page('https://...')`
+  - Python: `posthog.page('https://...')`
+  - Ruby: `posthog.page('https://...')`
+  - Node: `posthog.page('https://...')`
+  - Go: `posthog.page('https://...')`
+  - Android: `posthog.page('https://...')`
+  - iOS: `posthog.page('https://...')`
+  - PHP: `posthog.page('https://...')`
+  - Flutter: `posthog.page('https://...')`
+  - React Native: `posthog.page('https://...')`
+  - Elixir: `posthog.page('https://...')`
+  - Nim: `posthog.page('https://...')`
+  - API: `posthog.page('https://...')`
 - **Plays nicely with data warehouses:** import events or user data from your warehouse by writing a simple transformation plugin, and export data with pre-built apps - such as [BigQuery](https://posthog.com/apps/bigquery-export), [Redshift](https://posthog.com/apps/redshift-export), [Snowflake](https://posthog.com/apps/snowflake-export), and [S3](https://posthog.com/apps/s3-expo)
 
 [Read a full list of PostHog features](https://posthog.com/product).

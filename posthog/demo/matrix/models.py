@@ -189,6 +189,10 @@ class SimBrowserClient(SimClient):
         self.current_url = None
         self.is_logged_in = False
 
+    def page(self, url: str):
+        """Capture a $pageview event. $pageleave is handled implicitly."""
+        self.capture('$pageview', {'$current_url': url})
+
     def __enter__(self):
         """Start session within client."""
         self.active_session_id = str(self.person.cluster.roll_uuidt())
