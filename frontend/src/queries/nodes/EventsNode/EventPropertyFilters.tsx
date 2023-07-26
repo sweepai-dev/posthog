@@ -13,21 +13,31 @@ let uniqueNode = 0
 export function EventPropertyFilters({ query, setQuery }: EventPropertyFiltersProps): JSX.Element {
     const [id] = useState(() => uniqueNode++)
     return !query.properties || Array.isArray(query.properties) ? (
-        <PropertyFilters
-            propertyFilters={query.properties || []}
-            taxonomicGroupTypes={[
-                TaxonomicFilterGroupType.EventProperties,
-                TaxonomicFilterGroupType.PersonProperties,
-                TaxonomicFilterGroupType.EventFeatureFlags,
-                TaxonomicFilterGroupType.Cohorts,
-                TaxonomicFilterGroupType.Elements,
-                TaxonomicFilterGroupType.HogQLExpression,
-            ]}
-            onChange={(value: AnyPropertyFilter[]) => setQuery?.({ ...query, properties: value })}
-            pageKey={`EventPropertyFilters.${id}`}
-            style={{ marginBottom: 0, marginTop: 0 }}
-            eventNames={query.event ? [query.event] : []}
-        />
+        <div>
+            <button onClick={saveFilter}>Save Filter</button>
+            <select onChange={applySavedFilter}>
+                {savedFilters.map((filter, index) => (
+                    <option key={index} value={filter}>
+                        {filter}
+                    </option>
+                ))}
+            </select>
+            <PropertyFilters
+                propertyFilters={query.properties || []}
+                taxonomicGroupTypes={[
+                    TaxonomicFilterGroupType.EventProperties,
+                    TaxonomicFilterGroupType.PersonProperties,
+                    TaxonomicFilterGroupType.EventFeatureFlags,
+                    TaxonomicFilterGroupType.Cohorts,
+                    TaxonomicFilterGroupType.Elements,
+                    TaxonomicFilterGroupType.HogQLExpression,
+                ]}
+                onChange={(value: AnyPropertyFilter[]) => setQuery?.({ ...query, properties: value })}
+                pageKey={`EventPropertyFilters.${id}`}
+                style={{ marginBottom: 0, marginTop: 0 }}
+                eventNames={query.event ? [query.event] : []}
+            />
+        </div>
     ) : (
         <div>Error: property groups are not supported.</div>
     )

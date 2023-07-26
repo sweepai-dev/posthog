@@ -58,6 +58,16 @@ class EventViewSet(StructuredViewSetMixin, mixins.RetrieveModelMixin, mixins.Lis
     permission_classes = [IsAuthenticated, ProjectMembershipNecessaryPermissions, TeamMemberAccessPermission]
     throttle_classes = [ClickHouseBurstRateThrottle, ClickHouseSustainedRateThrottle]
 
+    @action(methods=["POST"], detail=False)
+    def save_filter(self, request: request.Request, **kwargs) -> response.Response:
+        # Save the filter settings to the database
+        pass
+
+    @action(methods=["GET"], detail=False)
+    def get_saved_filters(self, request: request.Request, **kwargs) -> response.Response:
+        # Retrieve the saved filters from the database
+        pass
+
     def _build_next_url(self, request: request.Request, last_event_timestamp: datetime, order_by: List[str]) -> str:
         params = request.GET.dict()
         reverse = "-timestamp" in order_by

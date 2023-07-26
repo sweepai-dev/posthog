@@ -52,6 +52,7 @@ export const entityFilterLogic = kea<entityFilterLogicType>([
     }),
     actions({
         selectFilter: (filter: EntityFilter | ActionFilter | null) => ({ filter }),
+        saveFilter: (filter: FilterType) => ({ filter }),
         updateFilterMath: (
             filter: Partial<ActionFilter> & {
                 index: number
@@ -139,6 +140,18 @@ export const entityFilterLogic = kea<entityFilterLogicType>([
     }),
 
     listeners(({ actions, values, props }) => ({
+        saveFilter: async ({ filter }) => {
+            const response = await fetch('/api/filters', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(filter),
+            })
+            if (!response.ok) {
+                throw new Error('Failed to save filter')
+            }
+        },
         renameFilter: async ({ custom_name }) => {
             if (!values.selectedFilter) {
                 return
