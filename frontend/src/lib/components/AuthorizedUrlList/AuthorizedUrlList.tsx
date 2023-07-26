@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { useActions, useValues } from 'kea'
+import './AuthorizedUrlList.css'
 import { LemonTag } from 'lib/lemon-ui/LemonTag/LemonTag'
 import { LemonButton } from 'lib/lemon-ui/LemonButton'
 import { AuthorizedUrlListType as AuthorizedUrlListType, authorizedUrlListLogic } from './authorizedUrlListLogic'
@@ -138,7 +139,7 @@ export function AuthorizedUrlList({
                                         Suggestion
                                     </LemonTag>
                                 )}
-                                <span title={keyedURL.url} className="flex-1 truncate">
+                                <span title={keyedURL.url} className="flex-1 truncate urlContainer">
                                     {keyedURL.url}
                                 </span>
                                 <div className="Actions flex space-x-2 shrink-0">
