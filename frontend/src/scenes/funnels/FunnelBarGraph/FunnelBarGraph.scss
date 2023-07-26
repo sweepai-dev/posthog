@@ -165,5 +165,22 @@ $glyph_height: 23px; // Based on .funnel-step-glyph
                 color: var(--funnel-default);
             }
         }
+
+        .funnel-bar-percentage-in-percentage {
+            position: absolute;
+            top: 8px;
+            line-height: 16px;
+            font-weight: bold;
+            color: #fff;
+
+            &.inside {
+                right: $label_position_offset;
+            }
+
+            &.outside {
+                left: calc(100% + #{$label_position_offset});
+                color: var(--funnel-default);
+            }
+        }
     }
 }
