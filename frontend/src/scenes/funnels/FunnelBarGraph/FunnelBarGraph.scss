@@ -129,40 +129,40 @@ $glyph_height: 23px; // Based on .funnel-step-glyph
         border-radius: 4px;
         display: flex;
         flex-direction: row;
+    }
 
-        .funnel-bar {
-            position: relative;
-            height: 100%;
-            background: var(--funnel-default);
-            transition: width 0.2s ease, height 0.2s ease;
+    .funnel-bar {
+        position: relative;
+        height: 100%;
+        background: var(--funnel-default);
+        transition: width 0.2s ease, height 0.2s ease;
 
-            &.first {
-                border-radius: 4px 0 0 4px;
+        &.first {
+            border-radius: 4px 0 0 4px;
+        }
+
+        &.last {
+            border-radius: 0 4px 4px 0;
+        }
+
+        &.only {
+            border-radius: 4px;
+        }
+
+        .funnel-bar-percentage {
+            position: absolute;
+            top: 8px;
+            line-height: 16px;
+            font-weight: bold;
+            color: #fff;
+
+            &.inside {
+                right: $label_position_offset;
             }
 
-            &.last {
-                border-radius: 0 4px 4px 0;
-            }
-
-            &.only {
-                border-radius: 4px;
-            }
-
-            .funnel-bar-percentage {
-                position: absolute;
-                top: 8px;
-                line-height: 16px;
-                font-weight: bold;
-                color: #fff;
-
-                &.inside {
-                    right: $label_position_offset;
-                }
-
-                &.outside {
-                    left: calc(100% + #{$label_position_offset});
-                    color: var(--funnel-default);
-                }
+            &.outside {
+                left: calc(100% + #{$label_position_offset});
+                color: var(--funnel-default);
             }
         }
     }

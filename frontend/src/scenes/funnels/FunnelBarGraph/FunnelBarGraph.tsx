@@ -100,6 +100,7 @@ export function FunnelBarGraph({
                                     <>
                                         {step?.nested_breakdown?.map((breakdown, index) => {
                                             const barSizePercentage = breakdown.count / basisStep.count
+                                            const barSizePercentageInPercentage = barSizePercentage * 100
                                             return (
                                                 <Bar
                                                     key={`${breakdown.action_id}-${step.breakdown_value}-${index}`}
@@ -112,6 +113,7 @@ export function FunnelBarGraph({
                                                             : undefined
                                                     }
                                                     percentage={barSizePercentage}
+                                                    percentageInPercentage={barSizePercentageInPercentage}
                                                     name={breakdown.name}
                                                     onBarClick={() =>
                                                         openPersonsModalForSeries({
@@ -142,7 +144,11 @@ export function FunnelBarGraph({
                                                         },
                                                         {
                                                             title: 'Conversion rate (total)',
-                                                            value: percentage(breakdown.conversionRates.total, 2, true),
+                                                            value: percentage(
+                                                                breakdown.conversionRates.total,
+                                                                2,
+                                                                true
+                                                            ),
                                                         },
                                                         {
                                                             title: `Conversion rate (from step ${
